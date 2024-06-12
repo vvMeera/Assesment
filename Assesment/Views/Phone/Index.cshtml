@@ -1,0 +1,30 @@
+﻿@model Assesment.Models.InputModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2>Enter Text</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.TextAreaFor(model => model.InputText, new { @class = "form-control", rows = 5 })
+        @Html.ValidationMessageFor(model => model.InputText)
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+
+@if (Model != null && Model.DetectedNumbers.Count > 0)
+{
+    <h3>Detected Phone Numbers</h3>
+    <ul>
+        @foreach (var number in Model.DetectedNumbers)
+        {
+            <li>@number</li>
+        }
+    </ul>
+}
+ 
+
